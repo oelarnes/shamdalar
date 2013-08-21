@@ -1,0 +1,14 @@
+#Reimplimentation of classes.py with fixed concepting of cards in game
+#zones and full documentation.
+
+#Phase 1: redefinition of classes 4/17/13 -
+
+import random
+import copy
+import output
+
+##Layers:
+##[0]:Copy, [1]:Control, [2]:Text, [3]: Type, [4]:Color, [5]:Abilities
+##[6]:P/T CDA [7]: P/T Set [8]: P/T Adjust [9]: P/T Counters [10]: P/T Switch
+
+#
