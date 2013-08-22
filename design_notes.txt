@@ -1,0 +1,39 @@
+Implementing file-based game-state file that represents a snapshot
+of the game at a given time (player decision point = pdp). Current idea is black-box use
+ of cPickle module
+	
+game engine: (gamestate, choice) |-(evaluate results up until next pdp)-> gamestate
+
+gamestate includes information as to which player is making a choice and the available choices
+-choices can be hidden for player, but must be enumerated for AI. List pared down using can_cast, can_activate, etc.
+
+engine unpacks gamestate into an object, evaluates it with the given choice, packs up and returns a new gamestate to
+manager. engine is always the determinant of which player has choice
+
+manager calls engine, sends gamestate to players, requests input, calls the AI, initializes game, resolves end-game
+scenario (as determined by engine)
+
+engine can call effects, which must fully resolve between pdps. effects alter objects in the gamestate, e.g. moving
+objects between zones, initializing rules, queuing actions
+
+UI takes game-state as input, allows for user decisions, returns a decision to the game model
+
+AI calls the engine on each choice presented, returns the maximum (or minimum from opp. point of view) among the values
+of the heuristic function 
+
+Implementation schedule
+
+-write classes, primarily gamestate class. gamestate class contains only information necessary for a full recreation of
+the game. 
+
+-write engine function, take a pair (gamestate_p, choice), unpack pickle, evaluate choice, populate choices, return gamestate_p.
+
+-write simple shell-based UI, which prompts the player when their turn to choose. Choices may be suppressed (during priority) or
+explicitly listed (during resolution of an effect). UI returns a choice along with the gamestate to the game engine.
+
+-write game management script to replicate legacy functionality
+
+-write AI version .1, which calls the engine on each choice, evaluates the heuristic function on each resulting gamestate, 
+and returns the choice with the maximum value
+
+-great success!! ready to begin parallel shamdalar game world implementation

@@ -1052,7 +1052,7 @@ def enter_battlefield(game, perm_list):
             perm.card = card_copy(perm.card.base, perm.card.owner)
         elif perm.card in perm.card.owner.hand:
             perm.card.owner.hand.remove(perm.card)
-            perm.card = card_dopy(perm.card.base, perm.card.owner)
+            perm.card = card_copy(perm.card.base, perm.card.owner)
         game.insert_perm(perm)
         print perm.name, 'entered the battlefield under', \
               perm.controller.name+'\'s control'

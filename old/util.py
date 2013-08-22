@@ -7,8 +7,6 @@ def subsets(set_):
     else: return subsets_up_to_size(set_, LARGEST)+ \
          subsets_larger_than_size(set_, len(set_)-LARGEST)
 
-def assign_attackers(game,
-
 def subsets_up_to_size(set_, number):
     subset = [[]]
     if number == 0:
