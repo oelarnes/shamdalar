@@ -1,17 +1,17 @@
 def elo_winrate(diff): return 1-1/(10**(float(diff)/400.0)+1)
 
-MY_RATING = 1900
+MY_RATING = 1800
 
 ratings = [1550,1600,1650,1700,1750,1800,1850,1900]
 
 p_0 = [.05,.1,.25,.2,.2,.1,.05,.05]
 
-if sum(p_0) != 1.0: print 'INVALID DIST'
+if sum(p_0) != 1.0 or len(ratings)!=len(p_0): print 'INVALID DIST'
 
-def winrate(probs) : return sum([probs[i]*elo_winrate(MY_RATING - ratings[i]) for i in range(8)])
+def winrate(probs) : return sum([probs[i]*elo_winrate(MY_RATING - ratings[i]) for i in range(len(ratings))])
 
-def next_round(probs): return [2*probs[i]*sum([probs[j]*elo_winrate(ratings[i]-ratings[j]) for j in range(8)])
-                     for i in range(8)]
+def next_round(probs): return [2*probs[i]*sum([probs[j]*elo_winrate(ratings[i]-ratings[j]) for j in range(len(ratings))])
+                     for i in range(len(ratings))]
 
 p_1 = next_round(p_0)
 p_2 = next_round(p_1)
