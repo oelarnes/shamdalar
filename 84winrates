@@ -1,10 +1,10 @@
 def elo_winrate(diff): return 1-1/(10**(float(diff)/400.0)+1)
 
-MY_RATING = 1800
+MY_RATING = 1769
 
 ratings = [1550,1600,1650,1700,1750,1800,1850,1900]
 
-p_0 = [.05,.1,.25,.2,.2,.1,.05,.05]
+p_0 = [.05,.16,.26,.24,.19,.05,.03,.02]
 
 if sum(p_0) != 1.0 or len(ratings)!=len(p_0): print 'INVALID DIST'
 
